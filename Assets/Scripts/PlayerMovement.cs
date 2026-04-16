@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -35,6 +36,12 @@ public class PlayerMovement : MonoBehaviour
             score++; // Zähler hoch
             scoreText.text = "Coins: " + score; // Text ändern
             Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Goal")) {
+            // Lade die aktuelle Szene neu
+            SceneManager.LoadScene(SceneManager.GetActiveScene()
+                                                 .buildIndex);
         }
 
     }
