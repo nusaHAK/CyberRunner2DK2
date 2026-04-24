@@ -43,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene()
                                                  .buildIndex);
         }
+        if (other.CompareTag("Respawn"))
+        {
+            // Lade die aktuelle Szene neu
+            SceneManager.LoadScene(SceneManager.GetActiveScene()
+                                                 .buildIndex);
+        }
 
     }
 
