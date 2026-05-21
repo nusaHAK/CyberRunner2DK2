@@ -63,9 +63,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (other.CompareTag("Goal")) {
-            // Lade die aktuelle Szene neu
+            // Lade das nächste Level
             SceneManager.LoadScene(SceneManager.GetActiveScene()
-                                                 .buildIndex);
+                                                 .buildIndex + 1);
         }
         if (other.CompareTag("Respawn"))
         {
