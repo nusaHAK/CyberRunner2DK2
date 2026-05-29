@@ -28,8 +28,22 @@ public class PlayerMovement : MonoBehaviour
         // Wir holen uns die Verbindung zum Rigidbody
         rb = GetComponent<Rigidbody2D>();
 
+        //NEU: wir prüfen, ob wir im allerersten Level sind (Index 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            //wir setzen unseren Zwischspeicher auf 0 bzw. wieder auf 0
+            PlayerPrefs.SetInt("GesammelteCoins", 0);
+        }
+
+
         //Anzeige beim Start direkt auf 3 Leben setzen
-        livesText.text = "Lives: " + lives;
+        livesText.text = "Lives: " + lives.ToString();
+
+        //Coins aus Zwischenspeicher holen oder 0, falls nicht vorhanden
+        score = PlayerPrefs.GetInt("GesammelteCoins", 0);
+        //Anzeige scoreText aktualisieren (ab Level 2)
+        scoreText.text = "Coins: " + score.ToString();  //aus int einen String für die Ausgabe im 
+                                                        //scoreText erzeugen
 
     }
 
@@ -59,6 +73,10 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Coin")) {
             score++; // Zähler hoch
             scoreText.text = "Coins: " + score; // Text ändern
+
+            //Einen Zwischspeicher für die Coins anlegen und mit GesammelteCoins benennen)
+            PlayerPrefs.SetInt("GesammelteCoins", score);
+
             Destroy(other.gameObject);
         }
 
